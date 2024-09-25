@@ -15,8 +15,8 @@ const Albums = class Albums {
         const albums = await this.AlbumModel.find().populate('photos');
         res.status(200).json(albums);
       } catch (err) {
-        console.error(`[ERROR] albums/getAll -> ${err}`);
-        res.status(500).json({ code: 500, message: 'Internal Server error' });
+        console.error(`[ERREUR] albums/getAll -> ${err}`);
+        res.status(500).json({ code: 500, message: 'Erreur interne du serveur' });
       }
     });
   }
@@ -26,12 +26,12 @@ const Albums = class Albums {
       try {
         const album = await this.AlbumModel.findById(req.params.id);
         if (!album) {
-          return res.status(404).json({ code: 404, message: 'Album not found' });
+          return res.status(404).json({ code: 404, message: 'Album non trouvé' });
         }
         return res.status(200).json(album);
       } catch (err) {
-        console.error(`[ERROR] albums/getById -> ${err}`);
-        return res.status(500).json({ code: 500, message: 'Internal Server error' });
+        console.error(`[ERREUR] albums/getById -> ${err}`);
+        return res.status(500).json({ code: 500, message: 'Erreur interne du serveur' });
       }
     });
   }
@@ -43,8 +43,8 @@ const Albums = class Albums {
         const savedAlbum = await album.save();
         return res.status(201).json(savedAlbum);
       } catch (err) {
-        console.error(`[ERROR] albums/create -> ${err}`);
-        return res.status(400).json({ code: 400, message: 'Bad request' });
+        console.error(`[ERREUR] albums/create -> ${err}`);
+        return res.status(400).json({ code: 400, message: 'Requête invalide' });
       }
     });
   }
@@ -58,12 +58,12 @@ const Albums = class Albums {
           { new: true }
         );
         if (!updatedAlbum) {
-          return res.status(404).json({ code: 404, message: 'Album not found' });
+          return res.status(404).json({ code: 404, message: 'Album non trouvé' });
         }
         return res.status(200).json(updatedAlbum);
       } catch (err) {
-        console.error(`[ERROR] albums/update -> ${err}`);
-        return res.status(400).json({ code: 400, message: 'Bad request' });
+        console.error(`[ERREUR] albums/update -> ${err}`);
+        return res.status(400).json({ code: 400, message: 'Requête invalide' });
       }
     });
   }
@@ -73,12 +73,12 @@ const Albums = class Albums {
       try {
         const deletedAlbum = await this.AlbumModel.findByIdAndDelete(req.params.id);
         if (!deletedAlbum) {
-          return res.status(404).json({ code: 404, message: 'Album not found' });
+          return res.status(404).json({ code: 404, message: 'Album non trouvé' });
         }
         return res.status(204).send();
       } catch (err) {
-        console.error(`[ERROR] albums/delete -> ${err}`);
-        return res.status(500).json({ code: 500, message: 'Internal Server error' });
+        console.error(`[ERREUR] albums/delete -> ${err}`);
+        return res.status(500).json({ code: 500, message: 'Erreur interne du serveur' });
       }
     });
   }
