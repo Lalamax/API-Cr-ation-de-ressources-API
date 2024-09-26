@@ -1,4 +1,3 @@
-```markdown
 # API Albums et Photos
 
 Cette API permet de gérer des albums et des photos. Les utilisateurs peuvent créer, lire, mettre à jour et supprimer des albums ainsi que des photos associées.
@@ -169,4 +168,3 @@ curl -X GET http://localhost:3000/albums
 ## Auteur
 
 Lalama
-```
